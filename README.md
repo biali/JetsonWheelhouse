@@ -27,7 +27,12 @@ git remote add origin <your-repo-url>
 git push -u origin main
 ```
 
-Enable GitHub Pages in repo settings (Source: GitHub Actions).
+Configure GitHub once:
+
+1. Open repository `Settings` -> `Pages` and set Source to `GitHub Actions`.
+2. Keep the default branch as `main` (or update `.github/workflows/pages.yml` if using a different branch).
+3. Ensure Actions can deploy Pages (`pages:write` and `id-token:write` are already requested in the workflow).
+4. Confirm Git LFS is used for wheel files (`git lfs install` locally, then push as normal).
 
 ## Update wheelhouse content
 
@@ -52,6 +57,7 @@ git push
 ```
 
 The workflow in `.github/workflows/pages.yml` deploys the repository to GitHub Pages.
+After one-time setup, each push to `main` updates the published site automatically.
 
 ## Pip install usage
 
