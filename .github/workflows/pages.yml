@@ -2,7 +2,7 @@ name: Deploy wheelhouse to GitHub Pages
 
 on:
   push:
-    branches: ["Master"]
+    branches: ["main", "master", "Master"]
   workflow_dispatch:
 
 permissions:
