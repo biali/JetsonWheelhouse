@@ -6,7 +6,7 @@ Static wheelhouse project that publishes a PEP 503 `simple` index and wheel file
 
 - `packages/`: wheel files (`*.whl`) tracked with Git LFS
 - `simple/`: generated PEP 503 package index pages
-- `scripts/sync_wheels.sh`: sync wheels from a local source directory
+- `scripts/sync_wheels.sh`: sync wheels from a local source directory (merge into `packages/` by default; `--mirror` to replace the set exactly)
 - `scripts/build_simple_index.py`: build `simple/` pages from `packages/`
 
 ## One-time setup
@@ -36,10 +36,16 @@ Configure GitHub once:
 
 ## Update wheelhouse content
 
-Sync from your local wheel output directory:
+Sync from your local wheel output directory (adds or updates `.whl` files; wheels already in `packages/` that are not in the source are **kept**):
 
 ```bash
 ./scripts/sync_wheels.sh /home/biali/Remoto/JETSON/delme/WheelBuilder/wheels packages
+```
+
+To make `packages/` **exactly** match one source folder (remove wheels that are not in that folder):
+
+```bash
+./scripts/sync_wheels.sh --mirror /path/to/wheels packages
 ```
 
 Generate the PEP 503 index:
